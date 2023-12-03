@@ -70,7 +70,7 @@ unordered_set<string> findWikiLinks(const string& inp) {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE (delete/edit this line)
-        auto url_end = std::find(found, end, '"');
+        auto url_end = std::find(url_start + delim.length(), end, '\"');
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,7 +81,7 @@ unordered_set<string> findWikiLinks(const string& inp) {
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE (delete/edit this line)
-        string link = string(url_start, url_end);
+        string link = string(url_start + delim.length(), url_end);
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
