@@ -26,8 +26,18 @@ inline size_t HashMap<K, M, H>::size() {
 }
 
 template <typename K, typename M, typename H>
+inline size_t HashMap<K, M, H>::size() const {
+    return _size;
+}
+
+template <typename K, typename M, typename H>
 inline bool HashMap<K, M, H>::empty() {
     return size() == 0;
+}
+
+template <typename K, typename M, typename H>
+inline bool HashMap<K, M, H>::empty() const {
+    return const_cast<HashMap<K, M, H>*>(this)->empty();
 }
 
 template <typename K, typename M, typename H>
@@ -50,7 +60,17 @@ M& HashMap<K, M, H>::at(const K& key) {
 }
 
 template <typename K, typename M, typename H>
+const M& HashMap<K, M, H>::at(const K& key) const {
+    return static_cast<const M&>(const_cast<HashMap<K, M, H>*>(this)->at(key));
+}
+
+template <typename K, typename M, typename H>
 bool HashMap<K, M, H>::contains(const K& key) {
+    return find_node(key).second != nullptr;
+}
+
+template <typename K, typename M, typename H>
+bool HashMap<K, M, H>::contains(const K& key) const {
     return find_node(key).second != nullptr;
 }
 
@@ -67,6 +87,11 @@ void HashMap<K, M, H>::clear() {
 template <typename K, typename M, typename H>
 typename HashMap<K, M, H>::iterator HashMap<K, M, H>::find(const K& key) {
     return make_iterator(find_node(key).second);
+}
+
+template <typename K, typename M, typename H>
+typename HashMap<K, M, H>::const_iterator HashMap<K, M, H>::find(const K& key) const {
+    return static_cast<const_iterator>(const_cast<HashMap<K, M, H>::const_iterator>(this)->find(key));
 }
 
 template <typename K, typename M, typename H>
@@ -124,6 +149,11 @@ typename HashMap<K, M, H>::const_iterator HashMap<K, M, H>::begin() const {
 template <typename K, typename M, typename H>
 typename HashMap<K, M, H>::iterator HashMap<K, M, H>::end() {
     return make_iterator(nullptr);
+}
+
+template <typename K, typename M, typename H>
+typename HashMap<K, M, H>::const_iterator HashMap<K, M, H>::end() const {
+    return static_cast<const_iterator>(const_cast<HashMap<K, M, H>*>(this)->end());
 }
 
 template <typename K, typename M, typename H>

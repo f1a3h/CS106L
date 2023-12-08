@@ -41,7 +41,7 @@
 *           The const and reference are not required, but key cannot be modified in function.
 *      - K and M must be regular (copyable, default constructible, and equality comparable).
 */
-template <typename K, typename M, typename H = std::hash<K>>
+template <typename K, typename M, typename H = std::hash<K> >
 class HashMap {
 public:
     /*
@@ -145,6 +145,8 @@ public:
     */
     inline size_t size();
 
+    inline size_t size() const;
+
     /*
     * Returns whether the HashMap is empty.
     *
@@ -157,6 +159,8 @@ public:
     * Complexity: O(1) (inlined because function is short)
     */
     inline bool empty();
+
+    inline bool empty() const;
 
     /*
     * Returns the load_factor, defined as size/bucket_count.
@@ -213,6 +217,8 @@ public:
     */
     bool contains(const K& key);
 
+    bool contains(const K& key) const;
+
     /*
     * Returns a l-value reference to the mapped value given a key.
     * If no such element exists, throws exception of type std::out_of_range.
@@ -233,6 +239,8 @@ public:
     * mapped value. This function is also not const-correct, which you will fix in milestone 2.
     */
     M& at(const K& key);
+
+    const M& at(const K& key) const;
 
     /*
     * Removes all K/M pairs the HashMap.
@@ -266,6 +274,8 @@ public:
      * Complexity: O(1) amortized average case, O(N) worst case, N = number of elements
      */
     iterator find(const K& key);
+
+    const_iterator find(const K& kay) const;
 
     /*
     * Inserts the K/M pair into the HashMap, if the key does not already exist.
@@ -375,6 +385,8 @@ public:
      *      while (iter != map.end()) {...}
      */
     iterator end();
+
+    const_iterator end() const;
 
 
     /*
