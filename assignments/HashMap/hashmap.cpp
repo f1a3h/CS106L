@@ -91,7 +91,7 @@ typename HashMap<K, M, H>::iterator HashMap<K, M, H>::find(const K& key) {
 
 template <typename K, typename M, typename H>
 typename HashMap<K, M, H>::const_iterator HashMap<K, M, H>::find(const K& key) const {
-    return static_cast<const_iterator>(const_cast<HashMap<K, M, H>::const_iterator>(this)->find(key));
+    return static_cast<const_iterator>(const_cast<HashMap<K, M, H>*>(this)->find(key));
 }
 
 template <typename K, typename M, typename H>
@@ -277,5 +277,46 @@ std::ostream& operator<<(std::ostream& os, const HashMap<K, M, H>& rhs) {
 }
 
 /* Begin Milestone 2: Special Member Functions */
+template <typename K, typename M, typename H>
+HashMap<K, M, H>::HashMap(const HashMap<K, M, H>& rhs):
+HashMap(rhs.bucket_count(), rhs._hash_function) {
+    for (auto [key, val]: rhs) {
+        insert({key, val});
+    }
+}
 
+template <typename K, typename M, typename H>
+HashMap<K, M, H>& HashMap<K, M, H>::operator=(const HashMap<K, M, H>& rhs) {
+    if (this != &rhs) {
+        clear();
+        for (auto [key, val]: rhs) {
+            insert({key, val});
+        }
+    }
+    return *this;
+}
+
+template <typename K, typename M, typename H>
+HashMap<K, M, H>::HashMap(HashMap<K, M, H>&& rhs):
+_size(std::move(rhs._size)),
+_hash_function(std::move(rhs._hash_function)),
+_buckets_array(rhs.bucket_count(), nullptr) {
+    for (size_t i = 0; i < rhs.bucket_count(); ++i) {
+        _buckets_array[i] = std::move(rhs._buckets_array[i]);
+    }
+}
+
+template <typename K, typename M, typename H>
+HashMap<K, M, H>& HashMap<K, M, H>::operator=(HashMap<K, M, H>&& rhs) {
+    if (this != &rhs) {
+        clear();
+        _size = std::move(rhs._size);
+        _hash_function = std::move(rhs._hash_function);
+        _buckets_array.resize(rhs.bucket_count());
+        for (size_t i = 0; i < rhs.bucket_count(); ++i) {
+            _buckets_array[i] = std::move(rhs._buckets_array[i]);
+        }
+    }
+    return *this;
+}
 /* end student code */

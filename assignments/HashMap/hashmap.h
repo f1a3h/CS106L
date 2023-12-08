@@ -275,7 +275,7 @@ public:
      */
     iterator find(const K& key);
 
-    const_iterator find(const K& kay) const;
+    const_iterator find(const K& key) const;
 
     /*
     * Inserts the K/M pair into the HashMap, if the key does not already exist.
@@ -466,6 +466,17 @@ public:
 
     /* Milestone 2 headers (you need to declare these) */
     // TODO: declare headers for copy constructor/assignment, move constructor/assignment
+    /* Copy constructor */
+    HashMap(const HashMap<K, M, H>& rhs);
+
+    /* Copy assignment operator */
+    HashMap& operator=(const HashMap<K, M, H>& rhs);
+
+    /* Move constructor */
+    HashMap(HashMap<K, M, H>&& rhs);
+
+    /* Move assignment operator */
+    HashMap& operator=(HashMap<K, M, H>&& rhs);
 
 private:
     /*
