@@ -1387,7 +1387,8 @@ void C_copy_edge() {
         /* 2. Basic self-assignment */
         // suppress the really annoying warnings
         #pragma GCC diagnostic push
-        // #pragma GCC diagnostic ignored "-Wself-assign-overloaded"
+        #pragma GCC diagnostic ignored "-Wself-assign-overloaded"
+        #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
         HashMap<std::string, int> map;
         std::unordered_map<std::string, int> answer;
         map = map;
@@ -1431,7 +1432,8 @@ void C_copy_edge() {
         /* 3. Expanded self-assignment */
         // suppress the really annoying warnings
         #pragma GCC diagnostic push
-        // #pragma GCC diagnostic ignored "-Wself-assign-overloaded"
+        #pragma GCC diagnostic ignored "-Wself-assign-overloaded"
+        #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
         HashMap<std::string, int> map1;
         HashMap<std::string, int> map2;
         map1.insert({"A", 1});
@@ -1549,7 +1551,8 @@ void F_move_edge() {
         /* 2. Basic self-assignment */
         // suppress the really annoying warnings
         #pragma GCC diagnostic push
-        // #pragma GCC diagnostic ignored "-Wself-move"
+        #pragma GCC diagnostic ignored "-Wself-move"
+        #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
         HashMap<std::string, int> map;
         std::unordered_map<std::string, int> answer;
 
@@ -1592,7 +1595,8 @@ void F_move_edge() {
         /* 3. Expanded self-assignment */
         // suppress the really annoying warnings
         #pragma GCC diagnostic push
-        // #pragma GCC diagnostic ignored "-Wself-move"
+        #pragma GCC diagnostic ignored "-Wself-move"
+        #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
         HashMap<std::string, int> map1;
         HashMap<std::string, int> map2;
         map1.insert({"A", 1});
