@@ -1,0 +1,5 @@
+## CS106L : Standard C++ programming
+
+CS106L is a C++ programming course taught in Stanford. It teaches several important and common topics of modern features of C++, which gives you an in-depth insight into understanding not only C++ syntax but also security, optimization and other fancy things about programming.
+
+For me, I took the lectures from [Stanford CS 106L Fall 2019 Lectures](https://www.youtube.com/playlist?list=PLCgD3ws8aVdolCexlz8f3U-RROA0s5jWA) uploaded by Avery Wang (Highly appreciated!), got all the course materials from [CS106L Winter 2020](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1204/lectures.html), and finally did the two interesting assignments of Autumn 2023 version which shows up in [the official website](https://web.stanford.edu/class/cs106l/index.html) currently (the time I started learning).
