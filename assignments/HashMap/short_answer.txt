@@ -1,2 +1,22 @@
 Assignment 3: STL HashMap (short answer questions)
-Names:
+Names: flash
+
+Q: at() vs []
+A: If you try to get a non-exist key/val, at() will throw an exception, while [] will just create the kay/(default value) in the map and return that default value.
+
+Q: HashMap::find vs std::find
+A: It depends on the number of elements per bucket. The Bit-O complexity of HashMap::find is highly related to that number, and std::find has a Big-O complexity of nlogn on average along with some smart optimization.
+
+Q: RAII?
+A: Because it wrapped every non-RAII-compliant class within a RAII-compliant container.
+
+Q: Increments
+A: For the prefix ++, first check if the next node is nullptr. If it is, this means we reached the end of the current bucket, thus we return the next bucket which contains value.
+   For the postfix ++, first copy the current iterator, then call the prefix ++ to increment the current iterator and finally return the copied iterator.
+
+Q: Attached Issues
+A: In the HashMapIterator class, every attribute is a value, so we can default the SMF directly.
+   However, in the HashMap class, it contains object attributes, thus we have to manually implement the SMF in order to allocate memory.
+
+Q: Move Semantics
+A: Because if not doing so, when we assign the corresponding attribute from rhs to lhs, we could be retriving the copy contructor method thus making a copy of some part of rhs, which breaks the rules of move semantics.
